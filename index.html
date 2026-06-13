@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Salary Dashboard</title>
+</head>
+<body>
+  <div id="loading">Đang tải dữ liệu...</div>
+  <div id="content"></div>
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbwvHEb5gu-dIPlVid3uFdoM1yNxvAX70HJ6lDSJ43rmGr2wAojH7WGDGPi2kw3smaF2/exec";
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("content").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+      })
+      .catch(err => {
+        document.getElementById("loading").textContent = "Lỗi: " + err.message;
+      });
+  </script>
+</body>
+</html>
